@@ -1,1 +1,3 @@
-# CS435-GUI
+# GUI Highlighter Tool
+
+This is my GUI Highlighter. It takes input of pairs of PNG Images with their corresponding XML files, and outputs annotated versions of the images with yellow rectangles around each component in the image. It does so by parsing the XML for node elements with a bounds attribute, returning all the components in the image. In order to run the code, simply have python installed, as well as the Pillow library installed(install via 'pip install Pillow'). Then have your input PNG Image and paired XML files all in the folder neighboring the python file, named "Programming-Assingment-Data". Whether or not you have the "Output-Images" folder created, the code will create and place the output highlighted images there.
