@@ -64,3 +64,9 @@ def process_files(data_folder, output_folder):
                 print(f"Skipped {png_file} due to XML parsing error")
         else:
             print(f"Warning: No matching XML file found for {png_file}")
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+data_folder = os.path.join(current_dir, "Programming-Assignment-Data")
+output_folder = os.path.join(current_dir, "Output-Images")
+
+process_files(data_folder, output_folder)
