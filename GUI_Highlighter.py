@@ -37,3 +37,30 @@ def highlight_components(image_path, components, output_path):
     except Exception as e:
         print(f"Error processing image {image_path}: {e}")
         return False
+
+def process_files(data_folder, output_folder):
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+
+    files = os.listdir(data_folder)
+    png_files = [f for f in files if f.endswith('.png')]
+
+    for png_file in png_files:
+        base_name = png_file[:-4]  # Remove '.png'
+        xml_file = base_name + '.xml'
+        
+        if xml_file in files:
+            png_path = os.path.join(data_folder, png_file)
+            xml_path = os.path.join(data_folder, xml_file)
+            output_path = os.path.join(output_folder, f"highlighted_{png_file}")
+
+            components = parse_xml_for_components(xml_path)
+            if components is not None:
+                if highlight_components(png_path, components, output_path):
+                    print(f"Processed {png_file}")
+                else:
+                    print(f"Failed to process {png_file}")
+            else:
+                print(f"Skipped {png_file} due to XML parsing error")
+        else:
+            print(f"Warning: No matching XML file found for {png_file}")
